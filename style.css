@@ -1,0 +1,42 @@
+/* Global reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1f1111;     /* dark grey background */
+    color: #ffffff;             /* white text */
+    font-family: "poppins", sans-serif;
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+
+section {
+    max-width: 600px;          /* keeps paragraphs from becoming too wide */
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+p {
+    margin-bottom: 1.3em;
+    text-align: justify;
+    font-size: 1rem;
+    word-wrap: break-word;
+    /* by restricting width of section, paragraphs naturally break across ~5 lines */
+}
+
+/* small screen tweaks */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 10px;
+    }
+    section {
+        max-width: 90%;
+    }
+}
