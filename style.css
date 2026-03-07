@@ -31,6 +31,40 @@ p {
     /* by restricting width of section, paragraphs naturally break across ~5 lines */
 }
 
+/* theme variants */
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-mode {
+    background-color: #1f1111;
+    color: #ffffff;
+}
+
+/* text size helpers */
+body.text-small p { font-size: 0.875rem; }
+body.text-medium p { font-size: 1rem; }
+body.text-large p { font-size: 1.125rem; }
+
+/* simple control panel styles */
+#controls {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.8);
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: center;
+    z-index: 1000;
+}
+#controls select,
+#controls button {
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin: 0 5px;
+}
+
 /* small screen tweaks */
 @media (max-width: 480px) {
     body {

@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="controls">
+        <label for="text-size">Text size:</label>
+        <select id="text-size">
+            <option value="small">Small</option>
+            <option value="medium" selected>Medium</option>
+            <option value="large">Large</option>
+        </select>
+        <button id="toggle-theme">Light Mode</button>
+    </div>
     <h1>Catholic Diocese of Lafia Silver Jubilee Prayer</h1>
 <section>
     <p>Heavenly Father,</p>
@@ -34,5 +43,37 @@
 
 </section>
     
+    <script>
+        // initialize preferences from localStorage
+        const body = document.body;
+        const sizeSelect = document.getElementById('text-size');
+        const themeButton = document.getElementById('toggle-theme');
+
+        function applyPreferences() {
+            const size = localStorage.getItem('textSize') || 'medium';
+            body.classList.remove('text-small','text-medium','text-large');
+            body.classList.add('text-' + size);
+            sizeSelect.value = size;
+
+            const theme = localStorage.getItem('theme') || 'dark';
+            body.classList.remove('light-mode','dark-mode');
+            body.classList.add(theme + '-mode');
+            themeButton.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+        }
+
+        sizeSelect.addEventListener('change', () => {
+            localStorage.setItem('textSize', sizeSelect.value);
+            applyPreferences();
+        });
+
+        themeButton.addEventListener('click', () => {
+            const current = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            applyPreferences();
+        });
+
+        applyPreferences();
+    </script>
 </body>
 </html>
