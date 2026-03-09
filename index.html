@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silver Jubilee Prayer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+ 
+
     <div id="controls">
-        <label for="text-size">Text size:</label>
-        <select id="text-size">
-            <option value="small">Small</option>
-            <option value="medium" selected>Medium</option>
-            <option value="large">Large</option>
-        </select>
-        <button id="toggle-theme">Light Mode</button>
-    </div>
+    <label for="text-size">Text size:</label>
+    <select id="text-size">
+        <option value="small">Small</option>
+        <option value="medium" selected>Medium</option>
+        <option value="large">Large</option>
+    </select>
+
+    <button id="toggle-theme">Light Mode</button>
+</div>
     <h1>Catholic Diocese of Lafia Silver Jubilee Prayer</h1>
 <section>
     <p>Heavenly Father,</p>
@@ -40,6 +44,7 @@
       </p>
       <p> Amen.</p>
 
+      <button id="read-prayer">🔊 Read Prayer</button>
 
 </section>
     
@@ -74,6 +79,31 @@
         });
 
         applyPreferences();
+
+        const readButton = document.getElementById("read-prayer");
+const prayerText = document.querySelector("section");
+
+let speech;
+
+readButton.addEventListener("click", () => {
+
+    if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+        readButton.textContent = "🔊 Read Prayer";
+        return;
+    }
+
+    speech = new SpeechSynthesisUtterance(prayerText.innerText);
+    speech.lang = "en-US";
+    speech.rate = 0.9;
+
+    speech.onend = () => {
+        readButton.textContent = "🔊 Read Prayer";
+    };
+
+    readButton.textContent = "⏹ Stop";
+    speechSynthesis.speak(speech);
+});
     </script>
 </body>
 </html>
